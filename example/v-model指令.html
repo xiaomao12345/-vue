@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>v-model实例</title>
+</head>
+<body>
+    <!-- v-model指令，我理解为绑定数据源。就是把数据绑定在特定的表单元素上，可以很容易的实现双向数据绑定 -->
+    <!-- 修饰符
+    .lazy：取代 input 监听 change 事件。
+    .number：输入字符串转为数字。
+    .trim：输入去掉首尾空格。 -->
+    <h1>v-model指令</h1>
+    <hr>
+    <div id="app">
+        <p>原始文本信息：{{message}}jspang</p>
+        <h3>文本框</h3>
+        <!-- 输入框内文字法发生变化则原始文字也随之立即改变 -->
+        <p>v-model<input type="text" v-model="message"></p>
+        <!-- 当输入框失去焦点后原始文字才开始改变，有延缓功效 -->
+        <p>v-model.lazy<input type="text" v-model.lazy="message"></p>
+        <!-- 只识别数字 -->
+        <p>v-model.number<input type="text" v-model.number="message"></p>
+        <!-- 不识别空格 -->
+        <p>v-model.trim<input type="text" v-model.trim="message"></p>
+        <hr>
+        <h3>文本域</h3>
+        <textarea cols="30" rows="10" v-model="message"></textarea>
+        <hr>
+        <h3>多选框绑定一个值</h3>
+        <input type="checkbox" id="isTrue" v-model="isTrue">
+        <label for="isTrue">{{isTrue}}</label>
+        <hr>
+        <h3>多选框绑定数组</h3>
+        <p>
+            <input type="checkbox" value="jspang" id="jspang" v-model="web_names">
+            <label for="isTrue">jspang</label>
+            <input type="checkbox" value="wxj" id="wxj" v-model="web_names">
+            <label for="isTrue">wxj</label>
+            <input type="checkbox" value="gh" id="gh" v-model="web_names">
+            <label for="isTrue">gh</label>
+        </p>
+        <p>{{web_names}}</p>
+        <hr>
+        <h3>单选框的绑定</h3>
+        <p>
+            <input type="radio" id="one" value="男" v-model="sex">
+            <label for="one">男</label>
+            <input type="radio" id="two" value="女" v-model="sex">
+            <label for="two">女</label>
+            <p>你选择的性别是：{{sex}}</p>
+        </p>
+    </div>
+ 
+    <script type="text/javascript">
+        var app=new Vue({
+            el:'#app',
+            data:{
+               message:'Hello World!',
+               isTrue:true,
+               web_names:[],
+               sex:'男'
+            }
+        })
+    </script>
+</body>
+</html>

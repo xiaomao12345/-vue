@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>v-on实例</title>
+</head>
+<body>
+    <!-- v-on 就是监听事件，可以用v-on指令监听DOM事件来触发一些javascript代码 -->
+    <!-- v-on可以简写用@代替 -->
+    <h1>v-on：绑定事件监听器</h1>
+    <hr>
+    <div id="app">
+        本场比赛得分{{fenshu}}<br/>
+        <p>
+            <button v-on:click="jiafen">加分</button>
+            <button @click="jianfen">减分</button>
+            <br/>
+            <input type="text" v-on:keyup.enter="onEnter" v-model="secondCount">
+        </p>
+    </div>
+ 
+    <script type="text/javascript">
+        var app=new Vue({
+            el:'#app',
+            data:{
+                fenshu:0,
+                secondCount:2
+            },
+            methods:{
+                jiafen:function() {
+                    this.fenshu++;
+                },
+                jianfen:function() {
+                    this.fenshu--;
+                },
+                onEnter:function(){
+                    this.count=this.count+parseInt(this.secondCount);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

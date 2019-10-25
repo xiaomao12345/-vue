@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>Helloworld</title>
+</head>
+<body>
+   <!--  <h1>v-if&v-else&v-show</h1>
+    <hr>
+    <div id="app">
+        <div v-if="isLogin">你好，JSpang！</div>
+        <div v-else="isLogin">请登录</div>
+    </div>
+ 
+    <script type="text/javascript">
+        var app=new Vue({
+            el:'#app',
+            data:{
+                isLogin:true
+            }
+        })
+    </script> -->
+    
+
+    <!-- v-if 和v-show的区别：
+    v-if： 判断是否加载，可以减轻服务器的压力，在需要时加载。
+    v-show：调整css dispaly属性，可以使客户端操作更加流畅。 -->
+    <h1>v-if&v-else&v-show</h1>
+    <hr>
+    <div id="app">
+        <div v-show="isLogin">你好，JSpang！</div>
+    </div>
+ 
+    <script type="text/javascript">
+        var app=new Vue({
+            el:'#app',
+            data:{
+                isLogin:true
+                /*false为不显示出文字，而true将文字显示出来*/
+            }
+        })
+    </script>
+</body>
+</html>

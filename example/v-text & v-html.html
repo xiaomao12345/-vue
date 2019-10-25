@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>v-text & v-html</title>
+</head>
+<body>
+    <h1>v-text & v-html指令</h1>
+    <hr>
+    <div id="app">
+        <!--<span>{{message}}</span>和<span v-text="message"></span>两种表示方法一样，都是为了在页面中显示出内容  -->
+        <span>{{message}}</span>=<span v-text="message"></span><br/>
+        <!-- v-html是为了显示出js中出现的html标签，如下，正常情况下<h2>标签会和Hello World一起在页面中显示出来，但加了v-html后，Hello World将加粗显示，即显示出了html标签的属性 -->
+        <span v-html="dodo"></span>
+    </div>
+ 
+    <script type="text/javascript">
+        var app=new Vue({
+            el:'#app',
+            data:{
+                message:'Hello World!',
+                dodo:'<h2>Hello World!</h2>'
+            }
+        })
+    </script>
+</body>
+</html>

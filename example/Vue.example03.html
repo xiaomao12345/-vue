@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+    <title>example methods Demo2</title>
+</head>
+<body>
+    <h1>example methods Demo2</h1>
+    <hr>
+    <div id="app">
+        num:{{num}}
+        <p><button @click="add">add</button></p>
+    </div>
+    <p><button onclick="reduce()">reduce</button></p>
+    <p><button onclick="reduceOnce()">reduceOnce</button></p>
+    <p><button onclick="off()">off</button></p>
+    <!-- add为vue内部方法，调用不需加括号，而reduce为外部方法，调用需要加括号 -->
+    <script type="text/javascript">
+        var app = new Vue({
+            el:"#app",
+            data:{
+                num:1
+            },
+            methods:{
+                add:function() {
+                    this.num++;
+                }
+            }
+        });
+
+        /*$on接收两个参数，第一个参数是调用时的事件名称，第二个参数是一个匿名方法。
+        如果按钮在作用域外部，可以利用$emit来执行。*/
+        app.$on("reduce",function(){
+            console.log("执行了reduce方法");
+            this.num--;
+        })
+        app.$once("reduceOnce",function(){
+            console.log("执行了reduceOnce方法");
+            this.num--;
+        })
+        function reduce() {
+            app.$emit('reduce');
+        }
+
+        function reduceOnce() {
+            app.$emit('reduceOnce');
+        }
+
+        //关闭事件
+        function off(){
+           app.$off('reduce'); //需要关闭哪个事件就写哪个事件的名字
+        }
+
+    </script>
+</body>
+</html>

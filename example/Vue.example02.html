@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+    <title>example methods Demo2</title>
+</head>
+<body>
+    <h1>example methods Demo2</h1>
+    <hr>
+    <div id="app">
+        
+    </div>
+    <p><button onclick="destroy()">卸载</button></p>
+    <p><button onclick="reload()">刷新</button></p>
+    <p><button onclick="tick()">更改数据</button></p>
+    <script type="text/javascript">
+        var jspang = Vue.extend({
+            template:`<p>{{message}}</p>`,
+            data:function() {
+                return {
+                    message:'Hello,I am jspang!'
+                }
+            },
+            mounted:function() {
+                console.log("mount被创建！")
+            },
+            destroyed:function() {
+                console.log('destroy 卸载之后！')
+            },
+            updated:function() {
+                console.log('updated 刷新之后！')
+            }
+        })
+        var vm = new jspang().$mount("#app");
+
+        /*用$destroy()进行卸载。*/
+        function destroy() {
+            vm.$destroy();  //销毁
+        }
+        /*用$forceUpdate()进行卸载。*/
+        function reload() {
+            vm.$forceUpdate();  //刷新
+        }
+        /*$nextTick() 数据修改方法：当Vue构造器里的data值被修改完成后会调用这个方法，也相当于一个钩子函数吧，和构造器里的updated生命周期很像。*/
+
+        function tick(){
+            vm.message = "update message info ";
+            vm.$nextTick(function(){
+                console.log('message更新完后我被调用了');
+            })
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>Vue的watch选项 监控数据</title>
+</head>
+<body>
+    <h1>Vue的watch option选项 监控数据</h1>
+    <hr>           
+    <div id="app">
+        <p>今日温度：{{wendu}}度</p>
+        <p>穿衣建议：{{chuanyi}}</p>
+        <p>
+            <button @click="shenggaowendu">升高温度</button>
+            <button @click="jiandiwendu">减低温度</button>
+        </p>
+    </div>
+    <script type="text/javascript">
+        var chuanyiarray = ['T恤短袖','夹克长裙','棉衣羽绒服'];
+        var app = new Vue({
+            el:'#app',
+            data:{
+                wendu:14,
+                chuanyi:'夹克长裙' 
+            },
+            methods:{
+                shenggaowendu:function() {
+                    this.wendu+=5;
+                },
+                jiandiwendu:function() {
+                    this.wendu-=5;
+                }
+            },
+            /*watch:{
+                wendu:function(newVal,oldVal){
+                    if(newVal>=26) {
+                        this.chuanyi = chuanyiarray[0];
+                    }else if(newVal<26 && newVal>0) {
+                        this.chuanyi = chuanyiarray[1];
+                    }else{
+                        this.chuanyi = chuanyiarray[2];
+                    }
+                }
+            }*/
+        })
+        app.$watch('wendu',function(newVal,oldVal){
+                if(newVal>=26) {
+                    this.chuanyi = chuanyiarray[0];
+                }else if(newVal<26 && newVal>0) {
+                    this.chuanyi = chuanyiarray[1];
+                }else{
+                    this.chuanyi = chuanyiarray[2];
+                }
+        })
+        /*watch监控可以写在构造器里面，也可以用$写在构造器外面*/
+    </script>
+</body>
+</html>
